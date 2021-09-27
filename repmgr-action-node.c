@@ -1002,9 +1002,6 @@ do_node_check(void)
 	if (do_node_check_data_directory(conn, runtime_options.output_mode, &node_info, &status_list) != CHECK_STATUS_OK)
 		issue_detected = true;
 
-	if (do_node_check_repmgrd(conn, runtime_options.output_mode, &node_info, &status_list) != CHECK_STATUS_OK)
-		issue_detected = true;
-
 	if (runtime_options.output_mode == OM_CSV)
 	{
 		appendPQExpBuffer(&output,

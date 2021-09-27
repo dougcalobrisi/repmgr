@@ -126,6 +126,11 @@
       </simpara>
      </listitem>
 
+     <listitem>
+      <simpara>
+        <option>--repmgrd</option>: checks whether &repmgrd; is running.
+      </simpara>
+     </listitem>
 
     </itemizedlist>
   </para>
