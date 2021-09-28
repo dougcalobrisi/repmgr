@@ -3639,7 +3639,7 @@ output_repmgrd_status(CheckStatus status)
 		case CHECK_STATUS_WARNING:
 			return "repmgrd running but paused";
 		case CHECK_STATUS_CRITICAL:
-			return "repmgrd not runningf";
+			return "repmgrd not running";
 		case CHECK_STATUS_UNKNOWN:
 			return "repmgrd status unknown";
 	}
