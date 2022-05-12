@@ -55,8 +55,8 @@ jobs:
         
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
+    #- name: Autobuild
+    #  uses: github/codeql-action/autobuild@v2
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
@@ -64,9 +64,21 @@ jobs:
     #   If the Autobuild fails above, remove it and uncomment the following three lines. 
     #   modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
 
-    # - run: |
-    #   echo "Run, Build Application using script"
-    #   ./location_of_script_within_repo/buildscript.sh
+    - run: |
+        DEBIAN_FRONTEND=noninteractive sudo apt-get -y install debhelper curl autoconf zlib1g-dev \
+        libedit-dev libxml2-dev libxslt1-dev libkrb5-dev libssl-dev libpam0g-dev systemtap-sdt-dev \
+        libselinux1-dev build-essential bison apt-utils lsb-release devscripts \
+        software-properties-common git shellcheck flex
+
+        sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+        wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+        sudo apt-get update
+
+        sudo apt-get -y install libpq-dev postgresql-13 postgresql-server-dev-13
+
+./configure
+
+export PG_CONFIG=/usr/bin/pg_config
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
