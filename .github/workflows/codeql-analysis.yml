@@ -76,11 +76,11 @@ jobs:
 
         sudo apt-get -y install libpq-dev postgresql-13 postgresql-server-dev-13
 
-        ./configure
-
         export PG_CONFIG=/usr/bin/pg_config
         export PATH=/usr/lib/postgresql/13/bin:$PATH
+        export LIBRARY_PATH=/usr/include/postgresql/13/server
         
+        ./configure
         make
 
     - name: Perform CodeQL Analysis
